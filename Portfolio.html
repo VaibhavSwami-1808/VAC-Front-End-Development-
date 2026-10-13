@@ -1,0 +1,342 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vaibhav Swami — Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#12151c;
+    --bg-alt:#181c25;
+    --text:#eceef1;
+    --text-dim:#9aa1ae;
+    --accent:#5fd9c9;
+    --accent-2:#e8a33d;
+    --line:#2a2f3b;
+    --maxw:760px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--text);
+    font-family:'IBM Plex Sans', sans-serif;
+    font-size:16px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  ::selection{background:var(--accent);color:var(--bg);}
+  a{color:var(--accent);text-decoration:none;border-bottom:1px solid transparent;transition:border-color .15s ease;}
+  a:hover{border-bottom-color:var(--accent);}
+  a:focus-visible, button:focus-visible{outline:2px solid var(--accent);outline-offset:3px;2}
+
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px;}
+
+  h1,h2,h3{font-family:'Space Grotesk', sans-serif;font-weight:600;letter-spacing:-0.01em;color:var(--text);margin:0;}
+
+  /* ---------- Header / nav ---------- */
+  header.site{
+    position:sticky;top:0;z-index:20;
+    background:rgba(18,21,28,0.86);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  .navbar{display:flex;align-items:center;justify-content:space-between;padding:16px 24px;max-width:var(--maxw);margin:0 auto;}
+  .navbar .mark{font-family:'Space Grotesk';font-weight:700;font-size:1.05rem;}
+  .navbar .mark span{color:var(--accent);}
+  .navlinks{display:flex;gap:22px;font-size:0.92rem;color:var(--text-dim);}
+  .navlinks a{color:var(--text-dim);border-bottom:none;}
+  .navlinks a:hover{color:var(--text);}
+
+  /* ---------- Hero ---------- */
+  .hero{padding:76px 0 56px;}
+  .hero .eyebrow{color:var(--accent);font-family:'IBM Plex Mono';font-size:0.85rem;margin-bottom:14px;}
+  .hero h1{font-size:clamp(2.1rem,5vw,3.1rem);line-height:1.08;max-width:11ch;}
+  .hero p.lede{max-width:52ch;color:var(--text-dim);font-size:1.08rem;margin-top:20px;}
+  .hero .meta-row{display:flex;flex-wrap:wrap;gap:18px;margin-top:28px;font-size:0.94rem;color:var(--text-dim);}
+  .hero .meta-row a{color:var(--text);}
+
+  .spark{margin-top:44px;}
+  .spark svg{width:100%;height:auto;display:block;}
+  .spark-caption{margin-top:8px;font-family:'IBM Plex Mono';font-size:0.78rem;color:var(--text-dim);}
+
+  /* ---------- Sections ---------- */
+  section{padding:52px 0;border-top:1px solid var(--line);}
+  .section-head{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:34px;}
+  .section-head h2{font-size:1.5rem;}
+  .section-head .count{font-family:'IBM Plex Mono';font-size:0.82rem;color:var(--text-dim);}
+
+  /* ---------- Projects ---------- */
+  .project{padding:28px 0;border-top:1px solid var(--line);}
+  .project:first-of-type{border-top:none;padding-top:0;}
+  .project-top{display:flex;justify-content:space-between;align-items:baseline;gap:16px;flex-wrap:wrap;}
+  .project h3{font-size:1.28rem;}
+  .project .tag-line{font-family:'IBM Plex Mono';font-size:0.78rem;color:var(--accent-2);white-space:nowrap;}
+  .project p{color:var(--text-dim);margin:12px 0 0;max-width:64ch;}
+  .stack{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px;}
+  .stack span{
+    font-family:'IBM Plex Mono';font-size:0.74rem;color:var(--text-dim);
+    border:1px solid var(--line);padding:4px 9px;border-radius:3px;
+  }
+
+  .proj-grid{display:grid;grid-template-columns:1fr 1fr;gap:0 40px;}
+  .proj-grid .project{border-top:1px solid var(--line);}
+  @media (max-width:640px){.proj-grid{grid-template-columns:1fr;}}
+
+  /* ---------- Skills ---------- */
+  .skills-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:28px 40px;}
+  @media (max-width:640px){.skills-grid{grid-template-columns:1fr;}}
+  .skill-group h4{font-family:'Space Grotesk';font-size:0.98rem;font-weight:600;color:var(--accent);margin:0 0 10px;}
+  .skill-group p{margin:0;color:var(--text-dim);font-size:0.94rem;}
+
+  /* ---------- Timeline (achievements + certs, real chronology) ---------- */
+  .timeline{position:relative;padding-left:26px;}
+  .timeline::before{content:"";position:absolute;left:5px;top:6px;bottom:6px;width:1px;background:var(--line);}
+  .t-item{position:relative;padding-bottom:26px;}
+  .t-item:last-child{padding-bottom:0;}
+  .t-item::before{content:"";position:absolute;left:-26px;top:5px;width:9px;height:9px;border-radius:50%;background:var(--bg);border:2px solid var(--accent);}
+  .t-item .t-date{font-family:'IBM Plex Mono';font-size:0.76rem;color:var(--text-dim);}
+  .t-item h4{font-family:'Space Grotesk';font-weight:600;font-size:1.02rem;margin:4px 0 6px;}
+  .t-item p{margin:0;color:var(--text-dim);font-size:0.94rem;}
+
+  /* ---------- Leadership ---------- */
+  .lead-block p{color:var(--text-dim);max-width:66ch;}
+  .lead-block strong{color:var(--text);}
+
+  /* ---------- Certifications ---------- */
+  .cert-list{list-style:none;margin:0;padding:0;display:grid;gap:12px;}
+  .cert-list li{display:flex;justify-content:space-between;gap:16px;font-size:0.92rem;border-bottom:1px dashed var(--line);padding-bottom:10px;flex-wrap:wrap;}
+  .cert-list .cname{color:var(--text);}
+  .cert-list .cmeta{font-family:'IBM Plex Mono';color:var(--text-dim);font-size:0.78rem;white-space:nowrap;}
+
+  /* ---------- Footer ---------- */
+  footer{padding:48px 0 64px;}
+  footer h2{font-size:1.6rem;max-width:16ch;}
+  footer p{color:var(--text-dim);margin-top:14px;max-width:50ch;}
+  .contact-links{display:flex;flex-wrap:wrap;gap:22px;margin-top:26px;font-size:1rem;}
+  .foot-note{margin-top:56px;font-family:'IBM Plex Mono';font-size:0.76rem;color:var(--text-dim);}
+
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    .draw{stroke-dashoffset:0 !important;transition:none !important;}
+  }
+</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="navbar">
+    <div class="mark">VAIBHAV<span>.</span>SWAMI</div>
+    <nav class="navlinks">
+      <a href="#work">Work</a>
+      <a href="#skills">Skills</a>
+      <a href="#timeline">Timeline</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <section class="hero" style="border-top:none;padding-top:64px;">
+    <div class="eyebrow">B.Tech CSE — Poornima College of Engineering</div>
+    <h1>I build machine learning systems and the products around them.</h1>
+    <p class="lede">AI/ML intern at ITXITPro, currently shipping a customer-intelligence suite end to end — segmentation, churn, forecasting, and a generative-AI insight layer on top. Outside of that: full-stack products, hackathons, and running a college theatre society.</p>
+    <div class="meta-row">
+      <span>Jaipur, India</span>
+      <a href="mailto:swmvaibhav1808@gmail.com">swmvaibhav1808@gmail.com</a>
+      <a href="https://github.com/">Github</a>
+      <a href="https://linkedin.com/">LinkedIn</a>
+    </div>
+
+    <div class="spark">
+      <svg viewBox="0 0 720 90" preserveAspectRatio="none" role="img" aria-label="Illustrative model-training loss curve">
+        <polyline points="0,70 40,66 80,68 120,55 160,58 200,40 240,44 280,30 320,34 360,22 400,26 440,16 480,19 520,12 560,15 600,9 640,11 680,7 720,8"
+          fill="none" stroke="#2a2f3b" stroke-width="1"/>
+        <polyline class="draw" points="0,70 40,66 80,68 120,55 160,58 200,40 240,44 280,30 320,34 360,22 400,26 440,16 480,19 520,12 560,15 600,9 640,11 680,7 720,8"
+          fill="none" stroke="#5fd9c9" stroke-width="2" stroke-dasharray="900" stroke-dashoffset="900"
+          style="transition:stroke-dashoffset 1.6s ease-out;"/>
+      </svg>
+      <div class="spark-caption">// loss curve, arbitrary units — the shape most of my week looks like</div>
+    </div>
+  </section>
+
+  <section id="work">
+    <div class="section-head">
+      <h2>Selected work</h2>
+      <span class="count">06 projects</span>
+    </div>
+
+    <div class="project">
+      <div class="project-top">
+        <h3>TimeOut — breaking digital addiction</h3>
+        <span class="tag-line">Smart India Hackathon 2025</span>
+      </div>
+      <p>An AI-powered digital wellness platform for students and educators: focus modes that use the Android Accessibility API to block distracting apps, live study rooms with photo check-ins and peer accountability secured on-chain, usage analytics dashboards, and a hybrid-classroom layer with AI attendance and resource sharing. Reached the Institute Level Round (Problem ID SIH25140, Theme: Smart Education).</p>
+      <div class="stack">
+        <span>React Native</span><span>Next.js</span><span>Node.js</span><span>Firebase</span><span>MongoDB</span>
+        <span>Socket.IO</span><span>TensorFlow Lite</span><span>GPT-4</span><span>Gemini</span><span>Solidity</span>
+      </div>
+    </div>
+
+    <div class="project">
+      <div class="project-top">
+        <h3>Weather Forecasting &amp; Alert System</h3>
+        <span class="tag-line">Solo build</span>
+      </div>
+      <p>A desktop weather application in Java with a custom Swing GUI across six panels — dashboard, forecast, search, alerts, analytics, settings. An OOP alert engine (abstract classes, custom exceptions) grades severity from LOW to CRITICAL, a background thread handles continuous monitoring, and reports export to CSV/TXT through hand-rolled queues, stacks, and linked lists.</p>
+      <div class="stack">
+        <span>Java</span><span>Java Swing</span><span>Multithreading</span><span>File I/O</span>
+      </div>
+    </div>
+
+    <div class="project">
+      <div class="project-top">
+        <h3>Retail Customer Intelligence Suite</h3>
+        <span class="tag-line">ITXITPro internship — in progress</span>
+      </div>
+      <p>An end-to-end ML project spanning customer segmentation, churn prediction, demand forecasting, and a generative-AI layer that turns model output into plain-language business insight.</p>
+      <div class="stack">
+        <span>Python</span><span>Scikit-learn</span><span>Forecasting</span><span>RAG</span><span>LLM APIs</span>
+      </div>
+    </div>
+
+    <div class="section-head" style="margin-top:8px;">
+      <h3 style="font-size:1.05rem;color:var(--text-dim);font-weight:500;">Applied data science &amp; ML coursework</h3>
+    </div>
+    <div class="proj-grid">
+      <div class="project">
+        <h3 style="font-size:1.05rem;">Customer churn &amp; credit scoring</h3>
+        <p style="font-size:0.92rem;">Classification with feature engineering and ensemble methods; a separate credit-scoring model built on logistic regression and gradient boosting.</p>
+      </div>
+      <div class="project">
+        <h3 style="font-size:1.05rem;">Wind energy &amp; flight price forecasting</h3>
+        <p style="font-size:0.92rem;">Time-series regression on meteorological data, and a separate regression model pricing flights from route, airline, and timing.</p>
+      </div>
+      <div class="project">
+        <h3 style="font-size:1.05rem;">COVID-19 trend analysis</h3>
+        <p style="font-size:0.92rem;">Exploratory data analysis and trend modelling on pandemic datasets to surface actionable patterns.</p>
+      </div>
+      <div class="project">
+        <h3 style="font-size:1.05rem;">CS:GO player performance</h3>
+        <p style="font-size:0.92rem;">Supervised learning over in-game statistics to predict player rankings.</p>
+      </div>
+    </div>
+    <p style="color:var(--text-dim);font-size:0.9rem;margin-top:4px;">Plus interactive Power BI dashboards for stakeholder reporting, RAG pipelines over vector databases, Hugging Face transformers for NLP, and a deep-learning workshop covering CNNs, RNNs, LSTMs and Word2Vec. Certified and affiliated with Microsoft.</p>
+  </section>
+
+  <section id="skills">
+    <div class="section-head"><h2>Skills</h2></div>
+    <div class="skills-grid">
+      <div class="skill-group">
+        <h4>Languages</h4>
+        <p>Java, Python, C, C++, SQL, Java Swing</p>
+      </div>
+      <div class="skill-group">
+        <h4>AI/ML &amp; data</h4>
+        <p>Scikit-learn, TensorFlow Lite, PyTorch, Hugging Face Transformers, RAG, MLOps, Power BI</p>
+      </div>
+      <div class="skill-group">
+        <h4>Frontend</h4>
+        <p>React.js, React Native, Next.js, Tailwind CSS, HTML, CSS, Kotlin (Android)</p>
+      </div>
+      <div class="skill-group">
+        <h4>Backend</h4>
+        <p>Node.js, Firebase, MongoDB, Socket.IO, REST APIs</p>
+      </div>
+      <div class="skill-group">
+        <h4>Design</h4>
+        <p>UI/UX design, graphic design, Canva, Figma</p>
+      </div>
+      <div class="skill-group">
+        <h4>Working style</h4>
+        <p>Leadership, teamwork, communication, adaptability</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="timeline">
+    <div class="section-head"><h2>Timeline</h2></div>
+    <div class="timeline">
+      <div class="t-item">
+        <div class="t-date">Jul – Oct 2025</div>
+        <h4>NPTEL: Data Structures &amp; Algorithms Design (IIT Kanpur), Cyber Security &amp; Privacy (IIT Madras)</h4>
+        <p>Two parallel NPTEL certifications during the same term.</p>
+      </div>
+      <div class="t-item">
+        <div class="t-date">2025</div>
+        <h4>Smart India Hackathon — Institute Level Round</h4>
+        <p>Built TimeOut with a team, advancing under Problem Statement SIH25140 (Smart Education).</p>
+      </div>
+      <div class="t-item">
+        <div class="t-date">Jan – Apr 2026</div>
+        <h4>NPTEL: Joy of Computing using Python (Elite, IIT Madras), Intro to Database Systems (IIT Madras)</h4>
+        <p>Elite status on the Python course; foundational coursework in databases alongside it.</p>
+      </div>
+      <div class="t-item">
+        <div class="t-date">June 2026</div>
+        <h4>Intellipaat certifications — AI, Linux, Power BI, Python, Microsoft SQL</h4>
+        <p>Five certifications completed in the same month, rounding out tooling across the stack.</p>
+      </div>
+      <div class="t-item">
+        <div class="t-date">2024 – 2028</div>
+        <h4>B.Tech, Computer Science Engineering</h4>
+        <p>Poornima College of Engineering, Jaipur — GPA 8.5/10.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-head"><h2>Leadership</h2></div>
+    <div class="lead-block">
+      <p><strong>Captain, Jazba Dramatic Society</strong> — run the official drama and theatre club at Poornima College of Engineering, and serve as Cultural Lead for the college's two annual fests, Aarohan and Aaveg. Have worked across technical, web development, decoration, and outreach teams for major college events, and led the team that represented the college at Oasis, BITS Pilani.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-head">
+      <h2>Certifications</h2>
+      <span class="count">09 total</span>
+    </div>
+    <ul class="cert-list">
+      <li><span class="cname">Intellipaat — Artificial Intelligence Course</span><span class="cmeta">Jun 2026 · 31679-912640-327374</span></li>
+      <li><span class="cname">Intellipaat — Linux Training</span><span class="cmeta">Jun 2026 · 31679-912747-327374</span></li>
+      <li><span class="cname">Intellipaat — Power BI Course</span><span class="cmeta">Jun 2026 · 31679-913421-327374</span></li>
+      <li><span class="cname">Intellipaat — Python Certification Course</span><span class="cmeta">Jun 2026 · 31679-912380-327374</span></li>
+      <li><span class="cname">Intellipaat — Microsoft SQL Certification Training</span><span class="cmeta">Jun 2026 · 31679-1364341-327374</span></li>
+      <li><span class="cname">NPTEL — Joy of Computing using Python (IIT Madras)</span><span class="cmeta">Elite, 83% · NPTEL26CS84S356600645</span></li>
+      <li><span class="cname">NPTEL — Introduction to Database Systems (IIT Madras)</span><span class="cmeta">51% · NPTEL26CS72S256603930</span></li>
+      <li><span class="cname">NPTEL — Data Structures &amp; Algorithms Design (IIT Kanpur)</span><span class="cmeta">46% · NPTEL25CS81S458601313</span></li>
+      <li><span class="cname">NPTEL — Cyber Security &amp; Privacy (IIT Madras)</span><span class="cmeta">54% · NPTEL25CS116S558600346</span></li>
+    </ul>
+  </section>
+
+  <footer id="contact">
+    <h2>Let's talk about what you're building.</h2>
+    <p>Open to ML and full-stack internships, and happy to walk through any of the projects above in more depth.</p>
+    <div class="contact-links">
+      <a href="mailto:swmvaibhav1808@gmail.com">swmvaibhav1808@gmail.com</a>
+      <a href="tel:+918619686378">+91 86196 86378</a>
+      <a href="https://github.com/">Github</a>
+      <a href="https://linkedin.com/">LinkedIn</a>
+    </div>
+    <div class="foot-note">Built from a single resume, one section at a time.</div>
+  </footer>
+
+</main>
+
+<script>
+  // Trigger the loss-curve line draw once, on load.
+  window.addEventListener('DOMContentLoaded', () => {
+    const line = document.querySelector('.draw');
+    if(line){ requestAnimationFrame(() => { line.style.strokeDashoffset = '0'; }); }
+  });
+</script>
+
+</body>
+</html>
